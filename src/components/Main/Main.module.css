@@ -1,0 +1,603 @@
+/* Enhanced Gamepad Navigation Bar Styles */
+
+.gamepadNav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  border-radius: 1.5rem;
+  /* padding: 1.5rem 2rem; */
+  padding: 1rem 1rem;
+  margin: 2rem auto;
+  /* max-width: 900px; */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.gamepadNav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.03) 0%, rgba(217, 119, 6, 0.03) 100%);
+  pointer-events: none;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.navList li {
+  flex: 1;
+}
+
+.navLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  background: transparent;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  min-height: 80px;
+}
+
+.navButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.navButton:hover::before {
+  left: 100%;
+}
+
+.navButton:hover {
+  color: var(--player-color, #f59e0b);
+  background: linear-gradient(135deg, var(--player-color-light, rgba(245, 158, 11, 0.1)) 0%, var(--player-color-light, rgba(217, 119, 6, 0.05)) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--player-color-light, rgba(245, 158, 11, 0.15));
+  border-color: var(--player-color-light, rgba(245, 158, 11, 0.2));
+}
+
+/* Connected State */
+.navButton.connected {
+  border-color: var(--player-color-light, rgba(16, 185, 129, 0.3));
+  background: linear-gradient(135deg, var(--player-color-light, rgba(16, 185, 129, 0.08)) 0%, var(--player-color-light, rgba(5, 150, 105, 0.05)) 100%);
+}
+
+.navButton.connected:hover {
+  border-color: var(--player-color-dark, rgba(16, 185, 129, 0.4));
+  box-shadow: 0 8px 25px var(--player-color-light, rgba(16, 185, 129, 0.15));
+}
+
+/* Active State */
+.navButton.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--player-color, #f59e0b) 0%, var(--player-color-dark, #d97706) 100%);
+  box-shadow: 
+    0 8px 25px var(--player-color-light, rgba(245, 158, 11, 0.3)),
+    0 4px 10px var(--player-color-light, rgba(217, 119, 6, 0.2));
+  transform: translateY(-1px);
+  border-color: var(--player-color, #f59e0b);
+}
+
+.navButton.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1.5px;
+}
+
+/* Icon Container */
+.iconContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+}
+
+.gamepadIcon {
+  font-size: 2rem;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.playerNumber {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: var(--player-color, #f59e0b);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navButton:hover .gamepadIcon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.navButton.active .gamepadIcon {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.navButton.active .playerNumber {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--player-color, #f59e0b);
+}
+
+/* Content Container */
+.contentContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  color: inherit;
+}
+
+.connectionInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.connectionText {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.signalStrengthText {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.navButton.active .connectionText,
+.navButton.active .signalStrengthText {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Status Icons */
+.status {
+  display: flex;
+  align-items: center;
+  min-width: 40px;
+  justify-content: center;
+}
+
+.wifiContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statusConnected {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  animation: pulse 2s infinite;
+}
+
+.statusDisconnected {
+  color: #ef4444;
+  font-size: 1.5rem;
+  opacity: 0.7;
+  animation: fadeInOut 1.5s infinite;
+}
+
+.signalBars {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+}
+
+.signalBar {
+  width: 3px;
+  background: rgba(156, 163, 175, 0.3);
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+.signalBar:nth-child(1) { height: 4px; }
+.signalBar:nth-child(2) { height: 6px; }
+.signalBar:nth-child(3) { height: 8px; }
+.signalBar:nth-child(4) { height: 10px; }
+
+.signalBarActive {
+  animation: signalPulse 2s infinite;
+}
+
+.navButton.active .statusConnected,
+.navButton.active .statusDisconnected {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes signalPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gamepadNav {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gamepadNav {
+    margin: 1.5rem;
+    padding: 1.25rem 1rem;
+    max-width: calc(100vw - 3rem);
+  }
+  
+  .navList {
+    gap: 0.75rem;
+  }
+  
+  .navButton {
+    padding: 1rem;
+    min-height: 70px;
+    gap: 0.75rem;
+  }
+  
+  .gamepadIcon {
+    font-size: 1.75rem;
+  }
+  
+  .playerNumber {
+    width: 16px;
+    height: 16px;
+    font-size: 0.65rem;
+  }
+  
+  .label {
+    font-size: 1rem;
+  }
+  
+  .connectionText {
+    font-size: 0.75rem;
+  }
+  
+  .signalStrengthText {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .gamepadNav {
+    margin: 1rem;
+    padding: 1rem 0.75rem;
+  }
+  
+  .navList {
+    gap: 0.5rem;
+  }
+  
+  .navButton {
+    padding: 0.875rem;
+    min-height: 65px;
+    gap: 0.5rem;
+  }
+  
+  .iconContainer {
+    min-width: 50px;
+  }
+  
+  .gamepadIcon {
+    font-size: 1.5rem;
+  }
+  
+  .playerNumber {
+    width: 14px;
+    height: 14px;
+    font-size: 0.6rem;
+  }
+  
+  .label {
+    font-size: 0.9rem;
+  }
+  
+  .connectionText {
+    font-size: 0.7rem;
+  }
+  
+  .signalStrengthText {
+    font-size: 0.6rem;
+  }
+  
+  .statusConnected,
+  .statusDisconnected {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gamepadNav {
+    margin: 0.75rem;
+    padding: 0.875rem 0.5rem;
+  }
+  
+  .navList {
+    gap: 0.375rem;
+    flex-direction: column;
+  }
+  
+  .navList li {
+    width: 100%;
+  }
+  
+  .navButton {
+    padding: 1rem;
+    min-height: 60px;
+    gap: 0.75rem;
+  }
+  
+  .iconContainer {
+    min-width: 45px;
+  }
+  
+  .gamepadIcon {
+    font-size: 1.4rem;
+  }
+  
+  .playerNumber {
+    width: 12px;
+    height: 12px;
+    font-size: 0.55rem;
+  }
+  
+  .label {
+    font-size: 0.95rem;
+  }
+  
+  .connectionText {
+    font-size: 0.75rem;
+  }
+  
+  .signalStrengthText {
+    font-size: 0.65rem;
+  }
+  
+  .statusConnected,
+  .statusDisconnected {
+    font-size: 1.2rem;
+  }
+  
+  .signalBars {
+    bottom: -6px;
+  }
+  
+  .signalBar {
+    width: 2px;
+  }
+  
+  .signalBar:nth-child(1) { height: 3px; }
+  .signalBar:nth-child(2) { height: 5px; }
+  .signalBar:nth-child(3) { height: 7px; }
+  .signalBar:nth-child(4) { height: 9px; }
+}
+
+/* Focus styles for accessibility */
+.navLink:focus {
+  outline: none;
+}
+
+.navLink:focus .navButton {
+  outline: 2px solid var(--player-color, #f59e0b);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .gamepadNav {
+    background: #ffffff;
+    border: 2px solid #000000;
+  }
+  
+  .navButton {
+    color: #000000;
+    border: 1px solid #666666;
+  }
+  
+  .navButton:hover,
+  .navButton.active {
+    background: #000000;
+    color: #ffffff;
+  }
+  
+  .playerNumber {
+    border: 2px solid #000000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .navButton,
+  .gamepadIcon,
+  .statusConnected,
+  .statusDisconnected,
+  .signalBarActive {
+    animation: none;
+    transition: none;
+  }
+  
+  .gamepadNav {
+    animation: none;
+  }
+  
+  .navButton:hover {
+    transform: none;
+  }
+  
+  .navButton:hover .gamepadIcon {
+    transform: scale(1.05);
+  }
+}
+
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gridItem {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+}
+
+/* Mobile First - 2x2 grid */
+@media (max-width: 500px) {
+  .gridContainer {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  .gridItem {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gridContainer {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  .gridItem {
+    min-height: 100px;
+  }
+}
+
+/* Tablet - Two columns */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Desktop Small - Two columns */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Desktop Large - Four columns */
+@media (min-width: 1200px) {
+  .gridContainer {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .gridContainer {
+    max-width: 1400px;
+    gap: 2rem;
+  }
+}
+
+/* Ensure nav button fills grid item */
+.navButton {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
