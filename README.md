@@ -2,9 +2,9 @@
 
 Test your gamepad or controller online with ease. Our web-based GamePad Tester helps gamers, developers, and streamers diagnose input issues, measure latency, and detect stick drift—without installing any software.
 
-![GitHub repo size](https://img.shields.io/github/repo-size/gpadtester/gpadtester)
-![GitHub license](https://img.shields.io/github/license/gpadtester/gpadtester)
-![GitHub stars](https://img.shields.io/github/stars/gpadtester/gpadtester?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/ekanshmalhotra/gpadtester)
+![GitHub license](https://img.shields.io/github/license/ekanshmalhotra/gpadtester)
+![GitHub stars](https://img.shields.io/github/stars/ekanshmalhotra/gpadtester?style=social)
 
 ## 🚀 Demo
 
